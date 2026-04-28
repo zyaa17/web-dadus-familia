@@ -2,34 +2,62 @@
 <html lang="tet">
 <head>
     <meta charset="UTF-8">
-    <title>Dadus Familia</title>
+    <title>Dadus Familia Interativu</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }
-        .card { 
-            background: white; 
-            width: 500px; 
-            margin: auto; 
-            padding: 20px; 
-            border-radius: 10px; 
+        body {
+            font-family: Arial;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            width: 550px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            display: flex; /* Hodi tau foto ho dadus fahe malu */
+            display: flex;
             justify-content: space-between;
         }
         .content { flex: 1; }
-        .photo-box { 
-            width: 120px; 
-            height: 150px; 
-            border: 2px solid #333; 
-            margin-left: 20px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
+
+        .photo-box {
+            width: 120px;
+            height: 150px;
+            border: 2px solid #333;
+            margin-left: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             background-color: #ddd;
-            text-align: center;
+            overflow: hidden;
         }
-        h2 { border-bottom: 2px solid #333; padding-bottom: 5px; }
-        p { margin: 10px 0; }
-        label { font-weight: bold; }
+
+        .photo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        input {
+            width: 100%;
+            padding: 5px;
+            margin-top: 3px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 8px 15px;
+            border: none;
+            background: #333;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        h2 {
+            border-bottom: 2px solid #333;
+        }
     </style>
 </head>
 <body>
@@ -37,19 +65,56 @@
 <div class="card">
     <div class="content">
         <h2>Dadus Familia</h2>
-        <p><label>Naran Kompletu:</label> laura Vicunha Ximenes</p>
-        <p><label>Sexu:</label> Feto</p>
-        <p><label>Data Moris:</label> 01-Abril-2005</p>
-        <p><label>Fatin Moris:</label> Fatumaca, Baucau</p>
-        <p><label>Enderesu:</label> Hera, Dili</p>
-        <p><label>Estado:</label> Solteira</p>
-        <p><label>Nivel Educasaun:</label> Estudante Universitáriu</p>
+
+        <label>Naran Kompletu:</label>
+        <input type="text" id="name" value="Laura Vicunha Ximenes">
+
+        <label>Sexu:</label>
+        <input type="text" id="sex" value="Feto">
+
+        <label>Data Moris:</label>
+        <input type="text" id="date" value="01-Abril-2005">
+
+        <label>Fatin Moris:</label>
+        <input type="text" id="place" value="Fatumaca, Baucau">
+
+        <label>Enderesu:</label>
+        <input type="text" id="address" value="Hera, Dili">
+
+        <label>Estado:</label>
+        <input type="text" id="status" value="Solteira">
+
+        <label>Nivel Educasaun:</label>
+        <input type="text" id="edu" value="Estudante Universitáriu">
+
+        <button onclick="saveData()">Save</button>
     </div>
 
-    <div class="photo-box">
-        Foto Iha Ne'e
+    <div>
+        <div class="photo-box" id="photoBox">
+            <span>Foto</span>
+        </div>
+        <input type="file" onchange="loadPhoto(event)">
     </div>
 </div>
+
+<script>
+function saveData() {
+    alert("Dadus Atualizadu!");
+
+    console.log("Name:", document.getElementById("name").value);
+    console.log("Sex:", document.getElementById("sex").value);
+}
+
+function loadPhoto(event) {
+    const image = document.createElement('img');
+    image.src = URL.createObjectURL(event.target.files[0]);
+
+    const box = document.getElementById("photoBox");
+    box.innerHTML = "";
+    box.appendChild(image);
+}
+</script>
 
 </body>
 </html>
